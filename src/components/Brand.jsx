@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 const Brand = () => {
     return (
-        <a className="navbar-brand" href="#">TiendaTuya</a>
+        <Link to={`/`} className="navbar-brand">TiendaTuya</Link>
     )
 }
 

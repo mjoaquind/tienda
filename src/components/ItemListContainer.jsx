@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { getProductos } from "../data/producto"
-import ItemList from "./ItemList"
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
@@ -14,9 +14,19 @@ const ItemListContainer = ({greeting}) => {
     if (!productos.length) return <h1>Cargando...</h1>
 
     return (
-        <div className="container">
-            <h1>{greeting}</h1>
-            <ItemList productos={productos} />
+        <div className="row g-4">
+        { productos.map((producto) => (
+            <div key={producto.id} className="col-md-3">
+                <div  className="card">
+                    <img src={producto.img} className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">{producto.tipo} {producto.marca} {producto.nombre}</h5>
+                        <p className="card-text">Precio: ${producto.precio}</p>
+                        <Link to={`/item/${producto.id}`} className="btn btn-primary">Detalle</Link>
+                    </div>
+                </div>
+            </div>
+        ))}
         </div>
     )
 }
