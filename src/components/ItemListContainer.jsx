@@ -1,14 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
-import { getProductos } from "../data/producto"
+import { getProductos, getProductosPorTipo } from "../data/producto"
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
 
+    const { tipo } = useParams();
+
     useEffect(() => {
-        getProductos().then((productos) => {
-            setProductos(productos);
-        });
+        if (!tipo) {
+            getProductos().then((productos) => {
+                setProductos(productos);
+            });
+        } else {
+            getProductosPorTipo(tipo).then((productos) => {
+                setProductos(productos);
+            });
+        }
+        
     }, []);
 
     if (!productos.length) return <h1>Cargando...</h1>
