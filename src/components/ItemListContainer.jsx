@@ -18,7 +18,7 @@ const ItemListContainer = () => {
             });
         }
         
-    }, []);
+    }, [{tipo}]);
 
     if (!productos.length) return <h1>Cargando...</h1>
 

@@ -27,6 +27,7 @@ const ItemView = () => {
                 <div className="col-md-8">
                     <div className="card-body">
                         <h5 className="card-title">{producto[0].tipo} {producto[0].marca} {producto[0].nombre}</h5>
+                        <p className="card-text">{producto[0].descripcion}</p>
                         <p className="card-text">Precio: ${producto[0].precio}</p>
                     </div>
                 </div>
