@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { useCounter } from "./useCounter";
+import { useState } from "react";
 
-const ItemCounter = () => {
+const ItemCounter = ({producto}) => {
     const [count, setCount] = useState(0);
 
     const incrementar = () => {
@@ -13,11 +12,13 @@ const ItemCounter = () => {
     }
 
     return(
+        <>
         <div>
-            <button onClick={decrementar} className="btn btn-primary">-</button>
+            <button onClick={decrementar} disabled={count === 0} className="btn btn-primary">-</button>
             <span className="p-3">{count}</span>
-            <button onClick={incrementar} className="btn btn-primary">+</button>
+            <button onClick={incrementar} disabled={count === producto.stock} className="btn btn-primary">+</button>
         </div>
+        </>
     )
 }
 
