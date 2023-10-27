@@ -24,7 +24,7 @@ const NavBar = () => {
                         ))}
                     </ul>
                 </div>
-                <CartContainer />
+                {location.pathname !== '/cart' && <CartContainer />}
             </div>
         </nav>
     )

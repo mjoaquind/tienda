@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getProductoPorID } from "../data/producto";
 import { useParams } from "react-router-dom";
 import ItemCounter from "./ItemCounter"
 
