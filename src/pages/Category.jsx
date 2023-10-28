@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import useProductosPorTipo from "../hooks/useProductosPorCategoria";
+import useProductosPorTipo from "../hooks/useProductosPorTipo";
 import { useContext } from "react";
 import CartContext from "../context/cart.context";
 
 function Category() {
     const params = useParams();
-    console.log(params.tipo)
     const { items, isLoading } = useProductosPorTipo(params.tipo);
     const { addItem } = useContext(CartContext);
 

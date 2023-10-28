@@ -1,4 +1,4 @@
-import { and, collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { and, collection, getFirestore, query, where, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import useIsLoading from "./useLoading";
 
@@ -15,22 +15,23 @@ const useProductosPorTipo = (tipo) => {
         );
     
         getDocs(q)
-            .then((snapshot) => {
-                if (!snapshot.empty) {
-                    setItems(
-                        snapshot.docs.map((doc) => {
-                            return {
+        .then((snapshot) => {
+            if (!snapshot.empty) {
+                setItems(
+                    snapshot.docs.map((doc) => {
+                        console.log("productos por tipo");
+                        return {
                             id: doc.id,
                             ...doc.data(),
-                            };
-                        })
-                    );
-                }
-            })
-            .finally(() => [stopLoading()]);
-    }, [tipo, stopLoading]);
+                        };
+                    })
+                );
+            }
+        })
+        .finally(() => [stopLoading()]);
+    }, [tipo]); // quito stopLoading porque hacía que se ejecute cada vez que se renderizaba el componente
 
     return { items, isLoading };
-}
+};
 
 export default useProductosPorTipo;

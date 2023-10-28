@@ -2,37 +2,34 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import useIsLoading from "./useLoading";
 
-export default function useProductos() {
+const useProductos = () => {
     const [items, setProductos] = useState([]);
     const { stopLoading, isLoading } = useIsLoading();
 
     useEffect(() => {
-        const fetchData = async () => {
-            const db = getFirestore();
-            const productosCollection = collection(db, "productos");
-
-            
-
-            try {
-                const snapshot = await getDocs(productosCollection);
+        const db = getFirestore();
+    
+        const itemsColecction = collection(db, "productos");
+        getDocs(itemsColecction)
+            .then((snapshot) => {
                 if (!snapshot.empty) {
-                    console.log("pasa por acá");
-                    const products = snapshot.docs.map((doc) => ({
-                        id: doc.id,
-                        ...doc.data(),
-                    }));
-                    setProductos(products);
-                }
-            } catch (error) {
-                // Manejar el error apropiadamente, por ejemplo:
-                console.error("Error al obtener productos:", error);
-            } finally {
-                stopLoading();
+                    setProductos(
+                    snapshot.docs.map((doc) => {
+                        console.log("productos");
+                        return {
+                            id: doc.id,
+                            ...doc.data(),
+                        };
+                    })
+                );
             }
-        };
-
-        fetchData();
-    }, [stopLoading]); // Agregar dependencias necesarias para volver a cargar los datos
+        })
+        .finally(() => {
+            stopLoading();
+        });
+    }, []); // quito stopLoading porque hacía que se ejecute cada vez que se renderizaba el componente
 
     return { items, isLoading };
 }
+
+export default useProductos;

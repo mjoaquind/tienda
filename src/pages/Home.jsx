@@ -1,10 +1,10 @@
 import ProductCard from "../components/ProductCard";
-import useItems from "../hooks/useProductos";
+import useProductos from "../hooks/useProductos";
 import { useContext } from "react";
 import CartContext from "../context/cart.context";
 
 const Home = () => {
-    const { items, isLoading } = useItems();
+    const { items, isLoading } = useProductos();
     const { addItem } = useContext(CartContext);
 
     if (isLoading) {
