@@ -3,30 +3,36 @@ import { useEffect, useState } from "react";
 import useIsLoading from "./useLoading";
 
 export default function useProductos() {
-    const [productos, setProductos] = useState([]);
+    const [items, setProductos] = useState([]);
     const { stopLoading, isLoading } = useIsLoading();
 
     useEffect(() => {
-        const db = getFirestore();
+        const fetchData = async () => {
+            const db = getFirestore();
+            const productosCollection = collection(db, "productos");
 
-        const productosColection = collection(db, "productos");
-        getDocs(productosColection)
-        .then((snapshot) => {
-            if (!snapshot.empty) {
-                setProductos(
-                snapshot.docs.map((doc) => {
-                return {
-                    id: doc.id,
-                    ...doc.data(),
-                };
-                })
-            );
+            
+
+            try {
+                const snapshot = await getDocs(productosCollection);
+                if (!snapshot.empty) {
+                    console.log("pasa por acá");
+                    const products = snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+                    setProductos(products);
+                }
+            } catch (error) {
+                // Manejar el error apropiadamente, por ejemplo:
+                console.error("Error al obtener productos:", error);
+            } finally {
+                stopLoading();
             }
-        })
-        .finally(() => {
-            stopLoading();
-        });
-    }, [stopLoading]);
+        };
 
-    return { productos, isLoading };
+        fetchData();
+    }, [stopLoading]); // Agregar dependencias necesarias para volver a cargar los datos
+
+    return { items, isLoading };
 }

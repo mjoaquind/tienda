@@ -1,20 +1,23 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './App.css';
-import Layout from './components/Layout'
-import ItemListContainer from './components/ItemListContainer';
-import ItemView from './components/ItemView';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Category from './pages/Category';
+import ItemView from './components/ProductCard';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route index path='/' element={<ItemListContainer />}/>
-          <Route path='/category/:tipo' element={<ItemListContainer />}/>
+          <Route index path='/' element={<Home />}/>
+          <Route path='/category/:tipo' element={<Category />}/>
           <Route path='/item/:id' element={ <ItemView/>}/>
           <Route path='/cart' element={<Cart/>}/>
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Layout>
     </BrowserRouter>

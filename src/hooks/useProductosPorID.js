@@ -2,8 +2,8 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import useIsLoading from "./useLoading";
 
-export default function useProductosPorID(id) {
-    const [producto, setProducto] = useState(null);
+const useProductosPorID = (id) => {
+    const [item, setProducto] = useState(null);
     const { stopLoading, isLoading } = useIsLoading();
 
     useEffect(() => {
@@ -30,7 +30,9 @@ export default function useProductosPorID(id) {
     }, [id, stopLoading]);
 
     return {
-        producto,
+        item,
         isLoading,
     };
 }
+
+export default useProductosPorID;

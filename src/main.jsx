@@ -12,12 +12,6 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID
-/*  apiKey: "AIzaSyA7yCAHDPCmKrCc2RiE_3WvLmRWwsMLkk4",
-  authDomain: "tienda-5178e.firebaseapp.com",
-  projectId: "tienda-5178e",
-  storageBucket: "tienda-5178e.appspot.com",
-  messagingSenderId: "989108753754",
-  appId: "1:989108753754:web:9f6fb47950154f74028f63"*/
 };
 
 initializeApp(firebaseConfig);
