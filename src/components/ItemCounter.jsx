@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ItemCounter = ({producto}) => {
+const ItemCounter = ({item}) => {
     const [count, setCount] = useState(0);
 
     const incrementar = () => {
@@ -12,13 +12,11 @@ const ItemCounter = ({producto}) => {
     }
 
     return(
-        <>
         <div>
             <button onClick={decrementar} disabled={count === 0} className="btn btn-primary">-</button>
             <span className="p-3">{count}</span>
-            <button onClick={incrementar} disabled={count === producto.stock} className="btn btn-primary">+</button>
+            <button onClick={incrementar} disabled={count === item.stock} className="btn btn-primary">+</button>
         </div>
-        </>
     )
 }
 

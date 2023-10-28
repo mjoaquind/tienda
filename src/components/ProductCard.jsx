@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const ProductCard = ({ item, handleClick }) => {
+const ProductCard = ({ item, handleClick, children }) => {
 
     return(
         <div  className="card">
@@ -9,8 +9,9 @@ const ProductCard = ({ item, handleClick }) => {
                 <p className="card-text"><strong>Descripción:</strong> {item.descripcion}<br/>
                 <strong>Precio:</strong> ${item.precio}<br/>
                 <strong>Stock:</strong> {item.stock}</p>
+                {children}
                 <Link to={`/item/${item.id}`} className="btn btn-primary">Detalles</Link>
-                <button className="btn btn-primary" onClick={handleClick}>Agregar al carrito</button>
+                <button className="btn btn-primary" onClick={() => handleClick(item, 1)}>Agregar al carrito</button>
             </div>
         </div>
     )
