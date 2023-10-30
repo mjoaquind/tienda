@@ -3,7 +3,7 @@ import useProductosPorID from "../hooks/useProductosPorID";
 import ProductCard from "../components/ProductCard";
 import { useContext } from "react";
 import CartContext from "../context/cart.context";
-import ItemCounter from "../components/ItemCounter";
+import ItemCounterButton from "../components/ItemCounterButton";
 
 const Product = () => {
     const params = useParams();
@@ -20,7 +20,7 @@ const Product = () => {
         <div >
             <h2>Producto {item.nombre}</h2>
             <ProductCard item={item} handleClick={addItem}>
-                <ItemCounter item={item} />
+                <ItemCounterButton item={item} />
             </ProductCard>
         </div>
     );
