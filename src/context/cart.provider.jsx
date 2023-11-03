@@ -52,7 +52,7 @@ export default function CartProvider({ children }) {
     const getTotal = () => {
         const { items } = cart;
         return items.reduce(
-        (acc, item) => acc + item.quantity * item.item.price,
+        (acc, item) => acc + item.quantity * item.item.precio,
         0
         );
     };

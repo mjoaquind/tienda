@@ -10,7 +10,7 @@ const CartContainer = () => {
         <div className='p-2 position-relative'>
             <Link to={`/cart`}>
                 <CartWidget />
-                <CartCount count={cart.items.length} />
+                <CartCount count={cart.items.reduce((acc, curr) => acc + curr.quantity, 0)} />
             </Link>
         </div>
     )
