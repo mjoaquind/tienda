@@ -1,19 +1,7 @@
-import { useContext } from "react"
-import CartContext from "../context/cart.context";
-import { Link } from "react-router-dom";
-
-const Cart = () => {
-    const { cart } = useContext(CartContext);
-
-    if (cart.items.length === 0) return (
-    <>
-        <h2>El carrito esta vacio</h2>
-        <Link to={`/`} className="btn btn-primary">Volver</Link>
-    </>)
-
+const CartTable = ({cart}) => {
+    
     return(
         <>
-        <h1>Detalle del carrito</h1>
         <table className="table">
             <thead>
                 <tr>
@@ -46,4 +34,4 @@ const Cart = () => {
     )
 }
 
-export default Cart;
+export default CartTable;

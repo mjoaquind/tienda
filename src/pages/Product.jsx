@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import useProductosPorID from "../hooks/useProductosPorID";
-import ProductCard from "../components/ProductCard";
+import ProductDetail from "../components/ProductDetail";
 import { useContext } from "react";
 import CartContext from "../context/cart.context";
-import ItemCounterButton from "../components/ItemCounterButton";
 
 const Product = () => {
     const params = useParams();
@@ -19,9 +18,9 @@ const Product = () => {
     return (
         <div >
             <h2>Producto {item.nombre}</h2>
-            <ProductCard item={item} handleClick={addItem}>
-                <ItemCounterButton item={item} />
-            </ProductCard>
+            <ProductDetail item={item} handleClick={addItem} />
+            <div className="p-3 text-center">
+            </div>
         </div>
     );
 }
