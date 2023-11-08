@@ -1,8 +1,11 @@
-# React + Vite
+# Trabajo Final de ReactJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para este trabajo se realizó una especie de tienda on-line de productos de computación.
 
-Currently, two official plugins are available:
+## Uso de Bootstrap
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Se utilizó Bootstrap 5 por CDN, dado que en un comienzo lo vimos así en clase, y fuí avanzando con el proyecto con CDN y si quería instalarlo y utilizar componentes tenía que cambiar demasiados componentes.
+
+## Componentes instalados
+
+Se agregó react-toastify.
