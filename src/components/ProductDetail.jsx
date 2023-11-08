@@ -1,16 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import CartContext from "../context/cart.context";
+
 const ProductDetail = ({ item, handleClick }) => {
+    const { cart } = useContext(CartContext);
 
-    const [count, setCount] = useState(0);
-
-    const incrementar = () => {
-        setCount(count+1);
-    }
-
-    const decrementar = () => {
-        setCount(count-1);
-    }
+    let disponible = item.stock - (cart.items.find(i => i.item.id === item.id)?.quantity || 0);
 
     return(
         <div className="card">
@@ -26,11 +21,8 @@ const ProductDetail = ({ item, handleClick }) => {
                         <strong>Stock:</strong> {item.stock}</p>
                     </div>
                     <div className="card-body text-center">
-                        <Link to={'/'} className="btn btn-secondary">Volver</Link>
-                        <button onClick={decrementar} disabled={count === 0} className="btn btn-primary">-</button>
-                        <span className="p-3">{count}</span>
-                        <button onClick={incrementar} disabled={count === item.stock} className="btn btn-primary">+</button>
-                        <button onClick={() => handleClick(item, count)} disabled={count === 0} className="btn btn-success">Agregar al carrito</button>
+                        <Link to={'/'} className="btn btn-secondary m-2">Volver</Link>
+                        <button onClick={() => handleClick(item, 1)} disabled={disponible === 0 ? true : false} className="btn btn-success m-2">Agregar al carrito</button>
                     </div>
                 </div>
             </div>

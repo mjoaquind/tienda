@@ -13,7 +13,6 @@ const useProductosPorID = (id) => {
         getDoc(itemRef)
         .then((snapshot) => {
             if (snapshot.exists()) {
-                console.log("productos por id");
                 setProducto({
                 id: snapshot.id,
                 ...snapshot.data(),

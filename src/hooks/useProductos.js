@@ -15,7 +15,6 @@ const useProductos = () => {
                 if (!snapshot.empty) {
                     setProductos(
                     snapshot.docs.map((doc) => {
-                        console.log("productos");
                         return {
                             id: doc.id,
                             ...doc.data(),

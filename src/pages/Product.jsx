@@ -19,8 +19,6 @@ const Product = () => {
         <div >
             <h2>Producto {item.nombre}</h2>
             <ProductDetail item={item} handleClick={addItem} />
-            <div className="p-3 text-center">
-            </div>
         </div>
     );
 }

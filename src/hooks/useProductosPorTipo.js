@@ -19,7 +19,6 @@ const useProductosPorTipo = (tipo) => {
             if (!snapshot.empty) {
                 setItems(
                     snapshot.docs.map((doc) => {
-                        console.log("productos por tipo");
                         return {
                             id: doc.id,
                             ...doc.data(),
