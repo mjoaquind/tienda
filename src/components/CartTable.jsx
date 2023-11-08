@@ -1,3 +1,6 @@
+import Product from '../pages/Product'
+import Category from '../pages/Category'
+import { Link } from 'react-router-dom';
 const CartTable = ({cart}) => {
     
     return(
@@ -17,9 +20,9 @@ const CartTable = ({cart}) => {
                 {cart.items.map(({item, quantity}) => (
                     <tr key={item.id}>
                         <td>{quantity}</td>
-                        <td>{item.tipo}</td>
+                        <td><Link to={`/category/${item.tipo}`} element={<Category />}>{item.tipo}</Link></td>
                         <td>{item.marca}</td>
-                        <td>{item.nombre}</td>
+                        <td><Link to={`/item/${item.id}`} element={<Product />}>{item.nombre}</Link></td>
                         <td>{item.precio}</td>
                         <td>{item.precio * quantity}</td>
                     </tr>

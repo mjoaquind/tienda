@@ -32,8 +32,12 @@ export default function CartProvider({ children }) {
         const index = items.findIndex((i) => i.item.id === itemId);
 
         if (index > -1) {
-            if (index > 0) {
-                items[index].quantity -= 1;
+            console.log(index);
+            if (items[index].quantity > 1) {
+                items[index] = {
+                    ...items[index],
+                    quantity: items[index].quantity - 1,
+                };
             } else {
                 items.splice(index, 1);
             }

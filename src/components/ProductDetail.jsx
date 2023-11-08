@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../context/cart.context";
 
-const ProductDetail = ({ item, handleClick }) => {
-    const { cart } = useContext(CartContext);
+const ProductDetail = ({ item }) => {
+    const { cart, addItem, removeItem } = useContext(CartContext);
 
     let disponible = item.stock - (cart.items.find(i => i.item.id === item.id)?.quantity || 0);
 
@@ -18,11 +18,12 @@ const ProductDetail = ({ item, handleClick }) => {
                         <h3 className="card-title">{item.tipo} {item.marca} {item.nombre}</h3>
                         <p className="card-text"><strong>Descripción:</strong> {item.descripcion}<br/>
                         <strong>Precio:</strong> ${item.precio}<br/>
-                        <strong>Stock:</strong> {item.stock}</p>
+                        <strong>Stock:</strong> {disponible}</p>
                     </div>
                     <div className="card-body text-center">
                         <Link to={'/'} className="btn btn-secondary m-2">Volver</Link>
-                        <button onClick={() => handleClick(item, 1)} disabled={disponible === 0 ? true : false} className="btn btn-success m-2">Agregar al carrito</button>
+                        <button onClick={() => removeItem(item.id)} disabled={disponible === item.stock ? true : false} className="btn btn-danger m-2">Quitar del carrito</button>
+                        <button onClick={() => addItem(item, 1)} disabled={disponible === 0 ? true : false} className="btn btn-success m-2">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
